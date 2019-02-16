@@ -115,7 +115,7 @@ def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_typ
         units = evolution(units, scores, 200, max_genes, max_gene_type)
         assert len(units) == 200
         print("Evolution complete")
-        print("average score of generation %d : %f" % (i + 1, sum(scores) / times))
+        print("average score of generation %d : %f" % (i + 1, sum(scores) / (times * len(units))))
         fs = open("unit.ga", "w")
         fs.write(str(units))
         fs.close()
