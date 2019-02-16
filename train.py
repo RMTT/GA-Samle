@@ -1,8 +1,20 @@
 from generator import generate_grid
 import random
 import time
+import logging
 
 direction = [[0, -1], [0, 1], [1, 0], [-1, 0]]
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler("log.txt", mode="w")
+handler.setLevel(logging.INFO)
+fmt = logging.Formatter("%(asctime)s - %(message)s")
+handler.setFormatter(fmt)
+logger.addHandler(handler)
+handler = logging.StreamHandler()
+handler.setFormatter(fmt)
+logger.addHandler(handler)
 
 
 def train_unit(unit, w, h, proportion, times, actions):
@@ -103,21 +115,21 @@ def evolution(units, scores, numbers, max_genes, max_gene_type):
 def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_type, generation):
     random.seed(time.time())
     r = []
-    print("Start train!")
+    logger.info("Start train!")
     for i in range(generation):
-        print("generation %d:" % (i + 1))
+        logger.info("generation %d:" % (i + 1))
         scores = []
 
-        print("Start action!")
+        logger.info("Start action!")
         for k, unit in enumerate(units):
             s = train_unit(unit, w, h, proportion, times, actions)
             scores.append(s)
-            print("score of a unit %d: %f" % (k + 1, s / times))
-        print("Action complete")
-        print("Start evolution!")
+            logger.info("score of a unit %d: %f" % (k + 1, s / times))
+        logger.info("Action complete")
+        logger.info("Start evolution!")
         units = evolution(units, scores, 200, max_genes, max_gene_type)
-        print("Evolution complete")
-        print("average score of generation %d : %f" % (i + 1, sum(scores) / (times * len(units))))
+        logger.info("Evolution complete")
+        logger.info("average score of generation %d : %f" % (i + 1, sum(scores) / (times * len(units))))
         fs = open("unit.ga", "w")
         r.append(sum(scores) / (times * len(units)))
         fs.write(str(units))
