@@ -6,6 +6,7 @@ direction = [[0, -1], [0, 1], [1, 0], [-1, 0]]
 
 
 def train_unit(unit, w, h, proportion, times, actions):
+    random.seed(time.time())
     score = 0
     for i in range(times):
         x = y = 0
@@ -48,6 +49,7 @@ def train_unit(unit, w, h, proportion, times, actions):
 
 
 def mating(a, b, max_genes, max_gene_type):
+    random.seed(time.time())
     p = random.randint(0, max_genes - 1)
 
     # heredity

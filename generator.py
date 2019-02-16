@@ -38,6 +38,7 @@ def generate_grid(width, high, proportion):
 
 
 def generate_random_gene(gene, max_traits, max_genes):
+    random.seed(time.time())
     traits = [[] for i in range(max_traits)]
     for i in range(max_traits):
         traits[i] = gene[random.randint(0, max_genes - 1)]
