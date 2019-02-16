@@ -42,7 +42,8 @@ def train_unit(unit, w, h, proportion, times, actions):
                 if tx >= 0 and tx < w and ty >= 0 and ty < h:
                     x = tx
                     y = ty
-                    score -= 1
+                    if grid[x][y] == 0:
+                        score -= 1
                 else:
                     score -= 5
     return score
