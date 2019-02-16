@@ -15,3 +15,4 @@ Here are the rules:
 + beyond the boundary: -5 scores
 + apply action of collect stamp but no stamp: -1 scores
 + apply action of collect stamp and success: +10 scores
++ other: -1 score

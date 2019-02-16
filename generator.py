@@ -1,5 +1,6 @@
 import random
 import math
+import time
 
 
 def generate_grid(width, high, proportion):
@@ -10,7 +11,7 @@ def generate_grid(width, high, proportion):
     :param proportion: the proportion of generate stamp,must less than 1
     :return:
     '''
-
+    random.seed(time.time())
     if proportion > 1:
         print("proportion must less than 1")
         return None

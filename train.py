@@ -40,7 +40,8 @@ def train_unit(unit, w, h, proportion, times, actions):
 
                 if tx >= 0 and tx < w and ty >= 0 and ty < h:
                     x = tx
-                    y = tx
+                    y = ty
+                    score -= 1
                 else:
                     score -= 5
     return score
@@ -98,6 +99,7 @@ def evolution(units, scores, numbers, max_genes, max_gene_type):
 
 def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_type, generation):
     random.seed(time.time())
+
     print("Start train!")
     for i in range(generation):
         print("generation %d:" % (i + 1))
@@ -113,4 +115,7 @@ def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_typ
         units = evolution(units, scores, 200, max_genes, max_gene_type)
         assert len(units) == 200
         print("Evolution complete")
-        print("max score of generation %d : %f" % (i + 1, max(scores) / times))
+        print("average score of generation %d : %f" % (i + 1, sum(scores) / times))
+        fs = open("unit.ga", "w")
+        fs.write(str(units))
+        fs.close()
