@@ -40,10 +40,11 @@ def train_unit(unit, w, h, proportion, times, actions):
             if next == 5:
                 if grid[x][y] == 1:
                     score += 10
+                    grid[x][y] = 0
                 else:
                     score -= 1
             elif next == 4:
-                pass
+                score -= 1
             else:
                 if next == 6:
                     r = random.randint(0, 3)
@@ -128,9 +129,9 @@ def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_typ
             logger.info("score of a unit %d: %f" % (k + 1, s / times))
         logger.info("Action complete")
         logger.info("Start evolution!")
+        logger.info("average score of generation %d : %f" % (i + 1, sum(scores) / (times * len(units))))
         units = evolution(units, scores, 200, max_genes, max_gene_type)
         logger.info("Evolution complete")
-        logger.info("average score of generation %d : %f" % (i + 1, sum(scores) / (times * len(units))))
         fs = open("unit.ga", "w")
         r.append(sum(scores) / (times * len(units)))
         fs.write(str(units))
