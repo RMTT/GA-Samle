@@ -34,6 +34,7 @@ def train_unit(unit, w, h, proportion, times, actions):
                     state = state * 3 + grid[tx][ty]
                 else:
                     state = state * 3 + 2
+            state = state * 3 + grid[x][y]
             next = unit[state]
 
             if next == 5:
