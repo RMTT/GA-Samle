@@ -44,7 +44,7 @@ def train_unit(unit, w, h, proportion, times, actions):
                 else:
                     score -= 1
             elif next == 4:
-                score -= 1
+                pass
             else:
                 if next == 6:
                     r = random.randint(0, 3)
@@ -56,8 +56,6 @@ def train_unit(unit, w, h, proportion, times, actions):
                 if tx >= 0 and tx < w and ty >= 0 and ty < h:
                     x = tx
                     y = ty
-                    if grid[x][y] == 0:
-                        score -= 1
                 else:
                     score -= 5
     return score

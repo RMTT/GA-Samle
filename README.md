@@ -15,5 +15,3 @@ Here are the rules:
 + beyond the boundary: -5 scores
 + apply action of collect stamp but no stamp: -1 score
 + apply action of collect stamp and success: +10 scores
-+ if move to a cell that no stamp: -1 score
-+ immovability: -1 score
