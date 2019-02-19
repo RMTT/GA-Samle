@@ -115,6 +115,7 @@ def evolution(units, scores, numbers, max_genes, max_gene_type):
 def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_type, generation):
     random.seed(time.time())
     r = []
+    m = []
     logger.info("Start train!")
     for i in range(generation):
         logger.info("generation %d:" % (i + 1))
@@ -128,12 +129,19 @@ def train_units(units, w, h, proportion, times, actions, max_genes, max_gene_typ
         logger.info("Action complete")
         logger.info("Start evolution!")
         logger.info("average score of generation %d : %f" % (i + 1, sum(scores) / (times * len(units))))
+        logger.info("max score of generation %d : %f" % (i + 1, max(scores) / times))
+
+        r.append(sum(scores) / (times * len(units)))
+        m.append(max(scores) / times)
         units = evolution(units, scores, 200, max_genes, max_gene_type)
         logger.info("Evolution complete")
         fs = open("unit.ga", "w")
-        r.append(sum(scores) / (times * len(units)))
         fs.write(str(units))
         fs.close()
     fs = open("average.ga", "w")
     fs.write(str(r))
+    fs.close()
+
+    fs = open("maximum.ga", "w")
+    fs.write(str(m))
     fs.close()
